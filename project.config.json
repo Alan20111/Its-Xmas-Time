@@ -1,0 +1,54 @@
+{
+  "name": "its-xmas-time",
+  "team": "EQ4A",
+  "sprint": "SPR1",
+  "methodology": "Scrumban",
+  "device": {
+    "target": "iPad (Horizontal)",
+    "width": 1194,
+    "height": 834
+  },
+  "figma": {
+    "fileName": "EQ4A_SPR1_Diseño",
+    "fileKey": "WvklCgfvXYpLksJpRidsQs",
+    "url": "https://www.figma.com/design/WvklCgfvXYpLksJpRidsQs/EQ4A_SPR1_Dise%C3%B1o",
+    "pages": [
+      {
+        "name": "US1 - Selección del objeto",
+        "frames": [
+          { "name": "01_Seleccion", "export": "exports/01_Seleccion.png" },
+          { "name": "02_Confirmacion", "export": "exports/02_Confirmacion.png" },
+          { "name": "03_Escenario_vacio", "export": "exports/03_Escenario_vacio.png" }
+        ]
+      },
+      {
+        "name": "US3 - Catálogo y arrastrar y soltar",
+        "frames": [
+          { "name": "04_Catalogo", "export": "exports/04_Catalogo.png" },
+          { "name": "05_Arrastrando", "export": "exports/05_Arrastrando.png" },
+          { "name": "06_Adorno_colocado", "export": "exports/06_Adorno_colocado.png" },
+          { "name": "07_Confirmar_diseno", "export": "exports/07_Confirmar_diseno.png" }
+        ]
+      }
+    ]
+  },
+  "designTokens": {
+    "colors": {
+      "primaryRed": "#C0392B",
+      "primaryGreen": "#1E7B4F",
+      "accentGold": "#D4A017",
+      "backgroundCream": "#FFF8EE",
+      "textDark": "#222222",
+      "border": "#EADBCE",
+      "surfaceWhite": "#FFFFFF"
+    },
+    "typography": {
+      "titles": "Poppins",
+      "body": "Inter"
+    },
+    "touchTarget": {
+      "minHeight": 44,
+      "buttonCornerRadius": 12
+    }
+  }
+}
