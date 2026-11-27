@@ -5,6 +5,10 @@
 > **Dispositivo objetivo:** iPad en orientación horizontal (`1194 × 834 px`)  
 > **Stack UI:** React 18 + Vite (Pointer Events para mouse y dedo)  
 
+## 🌐 Probarlo en línea
+
+**https://xmas.alanmendez.dev** (se actualiza solo con cada `push` a `main`).
+
 ## ▶️ Cómo correr el proyecto
 
 ```bash
