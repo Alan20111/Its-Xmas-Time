@@ -3,7 +3,16 @@
 > **Proyecto Escolar • Equipo EQ4A • Sprint 1 (SPR1)**  
 > **Metodología:** Scrumban  
 > **Dispositivo objetivo:** iPad en orientación horizontal (`1194 × 834 px`)  
-> **Stack UI planificado:** React + Componentes reutilizables con Auto Layout  
+> **Stack UI:** React 18 + Vite (Pointer Events para mouse y dedo)  
+
+## ▶️ Cómo correr el proyecto
+
+```bash
+npm install
+npm run dev      # abre http://localhost:5173 (también accesible desde el iPad en la misma red)
+npm test         # pruebas de la búsqueda (US2)
+npm run build    # versión de producción en dist/
+```
 
 ---
 
@@ -80,6 +89,22 @@ Crear un módulo interactivo para que el usuario elija un espacio navideño y lo
 ├── Alan Daniel.md            # Información del autor
 ├── README.md                 # Documentación y evidencias del sprint
 ├── project.config.json       # Configuración del proyecto y vinculación con Figma
+├── index.html / vite.config.js / package.json
+├── src/
+│   ├── App.jsx                       # Navegación: selección ↔ escenario
+│   ├── estilos.css                   # Estilos con los design tokens
+│   ├── data/espacios.js              # Chimenea, árbol y casa (US1)
+│   ├── data/adornos.js               # Catálogo por espacio {id, nombre, categoria, imagen}
+│   └── components/
+│       ├── SeleccionEspacio.jsx      # US1: tarjetas + confirmación
+│       ├── Escenario.jsx             # US3: colocar, mover, eliminar, terminar
+│       ├── Ilustraciones.jsx         # SVG de los espacios
+│       ├── Modal.jsx
+│       └── Catalogo/
+│           ├── Catalogo.jsx          # Panel de adornos + buscador
+│           ├── busqueda.js           # US2: lógica de búsqueda por nombre
+│           └── busqueda.test.js
+├── evidencias/spr2/          # Capturas de la app funcionando
 └── exports/                  # Capturas PNG exportadas a escala 1x
     ├── 01_Seleccion.png
     ├── 02_Confirmacion.png
