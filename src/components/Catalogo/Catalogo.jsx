@@ -1,14 +1,17 @@
 import { useState } from 'react';
 import { CATEGORIAS } from '../../data/adornos.js';
-import { buscarAdornos } from './busqueda.js';
+import { filtrarCatalogo } from './busqueda.js';
 
 // Panel lateral con el catálogo del espacio (frame 04_Catalogo).
 // Los adornos se arrastran con Pointer Events (mouse y dedo) desde aquí.
 export default function Catalogo({ espacio, adornos, seleccionadoId, onPointerDownAdorno }) {
   const categorias = CATEGORIAS.filter((c) => adornos.some((a) => a.categoria === c));
-  // US2: la búsqueda solo filtra lo que se ve en el catálogo; los adornos colocados viven en Escenario.
+  // US2: búsqueda y categoría solo filtran lo que se ve en el catálogo;
+  // los adornos colocados viven en Escenario y no se tocan.
   const [texto, setTexto] = useState('');
-  const visibles = buscarAdornos(adornos, texto);
+  const [categoria, setCategoria] = useState('Todos');
+  const visibles = filtrarCatalogo(adornos, categoria, texto);
+  const hayTexto = texto.trim() !== '';
 
   return (
     <aside className="catalogo" aria-label={`Adornos para ${espacio.nombre}`}>
@@ -36,16 +39,22 @@ export default function Catalogo({ espacio, adornos, seleccionadoId, onPointerDo
         )}
       </div>
 
-      {/* Filtro por categoría: estructura lista, se activa en la tarjeta del viernes. */}
-      <div className="catalogo__chips" role="group" aria-label="Categorías">
-        <button type="button" className="chip chip--activo" aria-pressed="true">
-          Todos ({adornos.length})
-        </button>
-        {categorias.map((c) => (
-          <button key={c} type="button" className="chip" disabled title="Disponible en la siguiente tarjeta">
-            {c}
-          </button>
-        ))}
+      <div className="catalogo__chips" role="group" aria-label="Filtrar por categoría">
+        {['Todos', ...categorias].map((c) => {
+          const activo = categoria === c;
+          return (
+            <button
+              key={c}
+              type="button"
+              className={`chip${activo ? ' chip--activo' : ''}`}
+              aria-pressed={activo}
+              onClick={() => setCategoria(c)}
+              data-categoria={c}
+            >
+              {c === 'Todos' ? `Todos (${adornos.length})` : c}
+            </button>
+          );
+        })}
       </div>
 
       <p className="catalogo__contador" aria-live="polite" data-contador-catalogo>
@@ -56,10 +65,20 @@ export default function Catalogo({ espacio, adornos, seleccionadoId, onPointerDo
         <div className="sin-resultados">
           <span className="sin-resultados__icono" aria-hidden="true">🔎</span>
           <strong>Sin resultados</strong>
-          <span>No hay adornos que coincidan con «{texto.trim()}»</span>
-          <button type="button" className="boton boton--secundario boton--chico" onClick={() => setTexto('')}>
-            Limpiar búsqueda
-          </button>
+          <span>
+            No hay adornos que coincidan con «{texto.trim()}»
+            {categoria !== 'Todos' && <> en {categoria}</>}
+          </span>
+          {hayTexto && (
+            <button type="button" className="boton boton--secundario boton--chico" onClick={() => setTexto('')}>
+              Limpiar búsqueda
+            </button>
+          )}
+          {categoria !== 'Todos' && (
+            <button type="button" className="enlace" onClick={() => setCategoria('Todos')}>
+              Ver todas las categorías
+            </button>
+          )}
         </div>
       ) : (
         <ul className="catalogo__rejilla">

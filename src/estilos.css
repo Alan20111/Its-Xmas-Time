@@ -387,7 +387,8 @@ button:disabled { cursor: not-allowed; }
   font-weight: 500;
 }
 .chip--activo { background: var(--rojo); color: var(--blanco); font-weight: 600; }
-.chip:disabled { opacity: 0.55; }
+.chip:not(.chip--activo):hover { background: #f6e8d6; }
+.enlace { border: none; background: none; color: var(--verde); font-weight: 600; font-size: 14px; text-decoration: underline; min-height: 36px; }
 .catalogo__rejilla {
   margin: 0;
   padding: 0;
